@@ -5,6 +5,9 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { ApolloProvider } from '@apollo/client';
+import apolloClient from './ApolloClient.ts';
+import { TodokServiceProviderComponent } from './contexts/TodoServiceContext.tsx';
 
 const theme = createTheme({
   palette: {
@@ -19,11 +22,15 @@ const theme = createTheme({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
+    <ApolloProvider client={apolloClient}>
+      <TodokServiceProviderComponent client={apolloClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </TodokServiceProviderComponent>
+    </ApolloProvider>
   </StrictMode>,
 )

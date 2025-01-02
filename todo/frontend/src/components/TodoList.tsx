@@ -4,7 +4,7 @@ import { Box, Grid2 } from "@mui/material";
 
 type Todo = {
   title: string;
-  body: string;
+  description: string;
 }
 
 type Props = {
@@ -23,7 +23,7 @@ const TodoList: React.FC<Props> = ({ todoList }) => {
                 size={{ xs: 12, sm: 6, md: 4 }}
                 paddingLeft={2}
               >
-                <TodoDisplay key={index} title={todo.title} body={todo.body} />
+                <TodoDisplay key={index} title={todo.title} body={todo.description} />
               </Grid2>
             )
           })
